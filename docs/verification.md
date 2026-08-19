@@ -2,8 +2,8 @@
 
 ## Current conclusion
 
-The local v0.1 gate is green on Node `v26.7.0` and PostgreSQL `17.11 (Homebrew)`. It proves the disclosed single-database synthetic
-slice only. Public Node 22/24/26 CI is pending and must be added before the repository is called remotely complete.
+The v0.1 gate is green locally on Node `v26.7.0` with PostgreSQL `17.11 (Homebrew)` and publicly on Node `22.23.2`, `24.19.0`, and
+`26.7.0` with PostgreSQL `17.11`. It proves the disclosed single-database synthetic slice only.
 
 ## Commands and local results
 
@@ -27,6 +27,21 @@ Observed on 2026-08-19:
 - smoke: 3 accounts, 4 orders, 2 executions, 1 open order, 1 cancellation, 1 publication, 1 page read, and 1 passing audit; real
   order, clearing, and external acceptance flags remained false;
 - `npm audit --audit-level=high`: 0 high/critical production dependency findings.
+
+## Public implementation receipt
+
+Implementation commit: [`6bf37632af8ce0794d7e27874af870f9e8434010`](https://github.com/estelledc/system-design-28-stock-exchange/commit/6bf37632af8ce0794d7e27874af870f9e8434010).
+
+CI run [`32219493671`](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671):
+
+| Runtime | Job | Result |
+|---|---|---|
+| Node 22.23.2 + PostgreSQL 17.11 | [95967193245](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671/job/95967193245) | success |
+| Node 24.19.0 + PostgreSQL 17.11 | [95967193506](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671/job/95967193506) | success |
+| Node 26.7.0 + PostgreSQL 17.11 | [95967193288](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671/job/95967193288) | success |
+
+Every job reported 15 pure tests, 10 real PostgreSQL groups, 6 true `SIGKILL` processes, the exact smoke/benchmark fixtures, zero
+failed/skipped/todo tests, and zero high/critical production dependency findings.
 
 ## Database cases
 
@@ -70,9 +85,12 @@ reads, 4 replay audits, and 16 order-evidence reads. Raw batch observations:
 | run 4 replay audits | 22.962 |
 | read 16 order evidence records | 3.061 |
 
-These are whole-batch observations for one laptop/database process, not per-operation latency, QPS, runtime comparison, capacity,
-fairness, availability, durability, or SLA. Public CI will report its own whole-batch values without combining them into a benchmark
-ranking.
+The three public jobs observed these whole-batch ranges for the same fixture: account creation `65.820–224.064 ms`, 64 maker orders
+`408.420–1,443.638 ms`, 64 crossing takers `453.681–919.307 ms`, 16 submit/cancels `121.463–256.912 ms`, 8 publication/pages
+`46.360–142.444 ms`, 4 audits `47.210–74.980 ms`, and 16 evidence reads `19.433–22.940 ms`.
+
+Both local and public values are whole-batch observations, not per-operation latency, QPS, runtime comparison, capacity, fairness,
+availability, durability, or SLA. Shared-runner variation is retained rather than normalized away.
 
 ## Not covered
 

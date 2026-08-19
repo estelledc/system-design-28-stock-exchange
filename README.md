@@ -10,8 +10,9 @@ chapter is read.
 ## Current status
 
 The implementation now exercises one PostgreSQL 17 authority that reserves resources, matches immediately, settles synthetic
-assets, publishes immutable cuts, and replays complete economic events. Local pure, real-database, process-crash, smoke, benchmark,
-and dependency gates pass. Public multi-runtime CI is still pending, so no remote acceptance claim exists yet.
+assets, publishes immutable cuts, and replays complete economic events. Local gates pass, and
+[implementation CI run 32219493671](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671)
+reproduced the full gate on Node 22, 24, and 26.
 
 ## Intended runnable slice
 
@@ -41,6 +42,13 @@ Against Node `v26.7.0` and PostgreSQL `17.11 (Homebrew)`:
 - production dependency audit: 0 high/critical findings.
 
 See [verification](docs/verification.md) for commands, raw batch timings, failure history, and exclusions.
+
+Public implementation jobs for commit
+[`6bf37632af8ce0794d7e27874af870f9e8434010`](https://github.com/estelledc/system-design-28-stock-exchange/commit/6bf37632af8ce0794d7e27874af870f9e8434010):
+
+- [Node 22 + PostgreSQL 17](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671/job/95967193245)
+- [Node 24 + PostgreSQL 17](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671/job/95967193506)
+- [Node 26 + PostgreSQL 17](https://github.com/estelledc/system-design-28-stock-exchange/actions/runs/32219493671/job/95967193288)
 
 ## Run locally
 
