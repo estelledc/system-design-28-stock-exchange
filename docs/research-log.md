@@ -4,6 +4,7 @@
 
 - Case: chapter 28, “Stock Exchange,” at upstream commit `9d8388721e7231442763ad37398b8d82224aa68f`.
 - Closed-book baseline: commit `e2af2047c01673e79b75a857609e0d5f28ec0acc`, written before the chapter was read.
+- Source comparison and architecture baseline: commit `2db627df2ffff230c88c6de070246b5c58fc4446`.
 - Research question: which minimum state transitions and receipts can prove price-time matching, reservation conservation,
   cancellation ordering, stable market-data reads, and restart replay without claiming to reproduce a real exchange?
 - Evidence rule: the chapter is a secondary design prompt. Venue specifications and PostgreSQL/RFC documentation calibrate only
