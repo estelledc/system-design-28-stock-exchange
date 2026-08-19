@@ -9,7 +9,9 @@ chapter is read.
 
 ## Current status
 
-Closed-book design only. No implementation or production claim exists yet.
+The closed-book contract and source comparison are complete. The selected v0.1 design is one PostgreSQL 17 authority that will
+reserve resources, match immediately, settle synthetic assets, publish immutable cuts, and replay complete economic events. No
+implementation or production claim exists yet.
 
 ## Intended runnable slice
 
@@ -30,6 +32,14 @@ production workload.
 ## Read first
 
 - [Closed-book contract](docs/closed-book-contract.md)
+- [Research log](docs/research-log.md)
+- [Source comparison](docs/source-comparison.md)
+- [Requirements](docs/requirements.md)
+- [Architecture](docs/architecture.md)
+- [API contract](docs/api.md)
+- [Operations](docs/operations.md)
+- [Threat model](docs/threat-model.md)
+- [ADR 0001: one PostgreSQL market authority](docs/adr/0001-single-postgresql-market-authority.md)
 - [Security policy](SECURITY.md)
 
 ## Evidence boundary
